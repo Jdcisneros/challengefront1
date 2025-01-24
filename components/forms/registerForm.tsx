@@ -68,7 +68,7 @@ export default function RegisterForm({ onRegisterSuccess }: RegisterFormProps) {
   return (
     <div>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          <TitleTodo>Registro</TitleTodo>
+          <TitleTodo>SIGN UP</TitleTodo>
           <TextField
             label="User Name"
             variant="outlined"
