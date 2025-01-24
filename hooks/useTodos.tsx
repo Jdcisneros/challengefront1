@@ -48,7 +48,7 @@ export const useTodos = () => {
       dispatch(setTasks(response.data));
     } catch (error) {
       console.error("Error fetching todos:", error);
-      dispatch(setError("Error al obtener las tareas.")); 
+      dispatch(setError("Error fetching todos:")); 
     } finally {
       dispatch(setLoading(false));
     }
@@ -85,7 +85,7 @@ export const useTodos = () => {
       dispatch(deleteTask(id));
       showAlert("Task deleted successfully", "success")
     } catch {
-      dispatch(setError("Error al eliminar la tarea."));
+      dispatch(setError("Error deleted task"));
       showAlert("Error deleted task", "error")
     } finally {
       dispatch(setLoading(false));
@@ -109,7 +109,7 @@ export const useTodos = () => {
       dispatch(updateTask(response.data));
       showAlert("Task edited successfully", "success")
     } catch {
-      dispatch(setError("Error al actualizar la tarea."));
+      dispatch(setError("Error edited Task"));
       showAlert("Error edited Task", "error")
     } finally {
       dispatch(setLoading(false));
