@@ -35,7 +35,6 @@ export default function RegisterForm({ onRegisterSuccess }: RegisterFormProps) {
     severity: "success" | "error" | "info" | "warning"
   ) => {
     setAlert({ open: true, message, severity });
-    console.log("showAlert called with:", message, severity);
   };
 
   const closeAlert = () => {
