@@ -29,6 +29,16 @@ export default function LoginForm() {
 
   const urlBack = "https://challengeback-production-5b58.up.railway.app/"
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    if (token && user) {
+      dispatch(setCredentials({ token, user: JSON.parse(user) }));
+    }
+  }, [dispatch]);
+
+
   const handleShowRegisterForm = () => {
     setShowRegisterForm(true);
   };
@@ -48,6 +58,9 @@ export default function LoginForm() {
       };
       const response = await axios.post(`${urlBack}api/login`, lowerCaseEmail);
       const { token, user } = response.data;
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
       dispatch(setCredentials({ token, user }));
       setAlertSeverity("success");
       setAlertMessage("Login successful. Welcome!");
