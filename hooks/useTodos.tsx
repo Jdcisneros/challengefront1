@@ -42,13 +42,14 @@ export const useTodos = () => {
   const fetchTodos = useCallback(async () => {
     dispatch(setLoading(true));
     try {
-      const response = await axios.get("urlBack", {
+      const response = await axios.get(`${urlBack}api/todos`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(setTasks(response.data));
     } catch (error) {
       console.error("Error fetching todos:", error);
       dispatch(setError("Error fetching todos:")); 
+      showAlert("Error fetching todos:", "error");
     } finally {
       dispatch(setLoading(false));
     }
@@ -58,8 +59,7 @@ export const useTodos = () => {
   const addTodo = async (title: string) => {
     dispatch(setLoading(true));
     try {
-      const response = await axios.post(
-        urlBack,
+      const response = await axios.post(`${urlBack}api/todos`,
         { title },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -69,7 +69,7 @@ export const useTodos = () => {
       showAlert("Task created successfully", "success");
     } catch {
       dispatch(setError("Error creating task"));
-      showAlert("Error creating task", "success");
+      showAlert("Error creating task", "error");
     } finally {
       dispatch(setLoading(false));
     }
@@ -79,7 +79,7 @@ export const useTodos = () => {
   const removeTodo = async (id: number) => {
     dispatch(setLoading(true));
     try {
-      await axios.delete(`${urlBack}${id}`, {
+      await axios.delete(`${urlBack}api/todos/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(deleteTask(id));
@@ -99,8 +99,7 @@ export const useTodos = () => {
   ) => {
     dispatch(setLoading(true));
     try {
-      const response = await axios.put(
-        `${urlBack}${id}`,
+      const response = await axios.put(`${urlBack}api/todos/${id}`,
         { title: updatedTitle, completed: updatedCompleted },
         {
           headers: { Authorization: `Bearer ${token}` },
