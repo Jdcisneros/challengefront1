@@ -5,7 +5,9 @@ import { setCredentials } from "../../redux/authSlice";
 import axios from "axios";
 import { StyledForm, TitleTodo } from "../styles/StyledTodo";
 import RegisterForm from "./registerForm";
-import { Button, ButtonGroup, TextField } from "@mui/material";
+import { Button, ButtonGroup, TextField, IconButton, InputAdornment } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AllAlerts from "../allAlerts";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -18,6 +20,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const {register, handleSubmit, formState: {errors}, reset} = useForm<FormData>();
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Alert states
   const [alertOpen, setAlertOpen] = useState(false);
@@ -32,7 +35,9 @@ export default function LoginForm() {
   const handleHideRegisterForm = () => {
     setShowRegisterForm(false);
   };
-
+   const handleClickShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -93,6 +98,18 @@ export default function LoginForm() {
               })}
               error={!!errors.password}
               helperText={errors.password?.message}
+               InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <ButtonGroup>
               <Button variant="contained" type="submit">
