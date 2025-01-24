@@ -88,7 +88,7 @@ export default function LoginForm() {
             <TextField
               label="Password"
               variant="outlined"
-              type="password"
+              type={showPassword ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
                 minLength: {
