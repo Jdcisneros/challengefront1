@@ -33,9 +33,14 @@ export default function LoginForm() {
     setShowRegisterForm(false);
   };
 
+ const lowerCaseEmail = {
+      ...data,
+      email: data.email.toLowerCase(),
+    };
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const response = await axios.post(`${urlBack}api/login`, data);
+      const response = await axios.post(`${urlBack}api/login`, lowerCaseEmail);
       const { token, user } = response.data;
       dispatch(setCredentials({ token, user }));
       setAlertSeverity("success");
