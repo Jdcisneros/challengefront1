@@ -13,7 +13,7 @@ To set up and run this frontend application locally, follow these steps:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-frontend-repository.git
+git clone https://github.com/Jdcisneros/challengefront1.git
 ```
 
 ### 2. Install dependencies
