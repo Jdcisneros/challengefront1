@@ -20,7 +20,7 @@ git clone https://github.com/Jdcisneros/challengefront1.git
 Navigate to the frontend project directory:
 
 ```bash
-cd CHALLENGEFRONT1
+cd challengefront1
 ```
 Then, install all required dependencies:
 
